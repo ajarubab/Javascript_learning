@@ -1,5 +1,7 @@
 console.log("Primitive data types");
 
+// Primitive data types STACK memory me store hoti hai
+
 // String
 
 let nm = "Raja";
