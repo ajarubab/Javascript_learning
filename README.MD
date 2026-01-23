@@ -25,3 +25,8 @@
     k. >>> git add .
     l. >>> git commit -m "first commit"
     m. >>> git push origin main
+    m. Refresh the github page to see the latest commits.
+
+8. We can run our javascript code without HTML file also, but it would require node installed in our system.
+9. if node is installed, just make a .js file with any console line and to run it open the integrated teminal
+    of vs code and type the     >>> node filename.js    and press enter, we will see the output of our js code.
