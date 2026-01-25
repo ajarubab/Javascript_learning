@@ -24,8 +24,10 @@ console.log("the value of new_numwordstr_prs ", new_numwordstr_prs, "and its typ
 
 console.log("------------x------x------------x---------x-------------");
 
-// conversion of true to number results 1 as value and number as type
-// conversion of false to number results 0 as value and number as type
+/*
+    conversion of true to number results 1 as value and number as type
+    conversion of false to number results 0 as value and number as type
+*/
 
 let boolVar = true;
 // let boolVar = false;
@@ -66,9 +68,12 @@ console.log("----------------------------------------------------");
 
 // String to boolean
 
-// only the empty string having value [""] or [''] 
-// on conversion to Boolean gives false otherwise 
-// all values inside the quotes results true
+/*
+    CONCLUSION :
+        only the empty string having value [""] or [''] 
+        on conversion to Boolean gives false otherwise 
+        all values inside the quotes results true
+*/
 
 // let str1 = "";
 let str1 = '0';
@@ -76,9 +81,11 @@ console.log("The value of str1 is", str1, "and it type is", typeof str1)
 let str_to_bool = Boolean(str1)
 console.log("The value of str_to_bool is", str_to_bool, "and it type is", typeof str_to_bool)
 
-// CONCLUSION : Boolean() string ka matlab nahi padhta, 
-// sirf empty vs non-empty check karta hai,
-
+/*
+    CONCLUSION : 
+        Boolean() string ka matlab nahi padhta, 
+        sirf empty vs non-empty check karta hai,
+*/
 console.log("-----------------xxxxxx-----------------------------------");
 
 // null, undefined or NaN to Boolean conversion results value of false and type boolean
@@ -159,12 +166,12 @@ let dig_to_bigint = BigInt(the_numdig);    // 5436n
 console.log("the value of dig_to_bigint ", dig_to_bigint, "and its type is", typeof dig_to_bigint);
 
 console.log("----------------------------------------------------");
-
-// BigInt conversion rules:
-// ❌ null, undefined, boolean → TypeError
-// ❌ floating number → TypeError
-// ❌ invalid string → SyntaxError
-
+/*
+    BigInt conversion rules:
+        ❌ null, undefined, boolean → TypeError
+        ❌ floating number → TypeError
+        ❌ invalid string → SyntaxError
+*/
 console.log("****************************************************************************************");
 
 // NaN = Not a Number
