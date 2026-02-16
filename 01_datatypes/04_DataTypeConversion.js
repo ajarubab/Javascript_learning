@@ -106,7 +106,7 @@ console.log("The value of mybigint is", mybigint, "and it type is", typeof mybig
 let mybigint_to_bool = Boolean(mybigint)    // true
 console.log("The value of mybigint_to_bool is", mybigint_to_bool, "and it type is", typeof mybigint_to_bool)
 
-console.log("****************************************************************************************");
+console.log("***************************** 1111 1111 1111 1111 1111 ***********************************************************");
 
 // Number to String results digits as value and string as type
 
@@ -114,6 +114,11 @@ let mynumstr = 123;
 console.log("The value of mynumstr is", mynumstr, "and it type is", typeof mynumstr)
 let mystr = String(mynumstr)
 console.log("The value of mystr is", mystr, "and it type is", typeof mystr)
+
+let mynumstr1 = 4567;
+console.log("The value of mynumstr1 is", mynumstr1, "and it type is", typeof mynumstr1);
+let mystr_1 = mynumstr1.toString();
+console.log("The value of mystr_1 is", mystr_1, "and it type is", typeof mystr_1);
 
 
 // null to String results null as value and string as type
