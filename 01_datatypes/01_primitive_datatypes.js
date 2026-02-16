@@ -46,6 +46,20 @@ console.log("The value of rb3 is :", rb3, "and it's type is : ", typeof (rb3));
 let rb4 = "false";
 console.log("The value of rb4 is :", rb4, "and it's type is : ", typeof (rb4));
 
+console.log("****************************************************************************************");
+
+let word1 = `Raja`;
+let word2 = 'Kumar';
+let word3 = "prasad";
+let word4 = `hi
+are you
+ready`;
+console.log(`The name is :  ${word1}`, word2, word3);
+console.log(`Hello  ${word1} ${word2}`, word3);
+console.log("Hi " + word1 + " " + word2, word3);
+console.log(`The callsign is :  ${word4}`); // template literal fetches all the characters as it is, including spaces and enter"
+
+console.log("****************************************************************************************");
 
 // Number
 
