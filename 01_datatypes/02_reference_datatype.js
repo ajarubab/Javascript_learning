@@ -22,7 +22,6 @@ console.log("Type of age : ", typeof (person.age));
 console.log("Type of city : ", typeof (person.city));
 console.log("Type of salary : ", typeof (person.salary));
 
-
 // Array
 
 let arr1 = [
@@ -89,3 +88,46 @@ console.log(sum);   // returns whole funtion block
 console.log("Type of sum : ", typeof sum);   // function
 console.log(sum());     // returns output
 console.log("Type of greet() : ", typeof sum()); // returns output type
+
+console.log("************************** Array Inside Object **************************************************************");
+
+let Human = {
+    kingdom: "Animalia",
+    Phylum: "Chordata",
+    Class: "Mammalia",
+    Order: "Priamtes",
+    Family: "Hominidae",
+    Genus: "Homo",
+    Species: "sapience",
+    Domain: "Eukaryota",
+    Gender: ["Male", "Female", "Other"]
+}
+
+console.log("This human is a", Human.Gender[1]);
+
+console.log("*********************** Object inside Array *****************************************************************");
+
+let decoration_stuff = [
+    {
+        item_name: "Orchid flower",
+        item_count: 10,
+        item_value: 8000
+    },
+    {
+        item_name: "Rubber baloon",
+        item_count: 100,
+        item_value: 200
+    },
+    {
+        item_name: "fancy lights",
+        item_count: 15,
+        item_value: 1200
+    },
+    {
+        item_name: "Paper ribbon",
+        item_count: 20,
+        item_value: 500
+    }
+]
+
+console.log(decoration_stuff[2].item_name, " are of ", decoration_stuff[2].item_value + " ruppees.");
