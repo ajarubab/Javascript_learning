@@ -159,9 +159,7 @@ array.reduce((accumulator, currentValue) => {
  return updatedValue;
 }, initialValue);
 
-*/
-
-console.log("------------------ REDUCE FUNCTION -------------------------");
+//------------------------------ REDUCE ---------------------------------
 
 // -------- reduce function returns single value --------------------------
 
@@ -457,3 +455,111 @@ let grpBySalRange = people.reduce((acc, p) => {
   return acc;
 }, {});
 console.log("people Satus according to their Salary range : ", grpBySalRange);
+
+*/
+
+console.log("------------------ FILTER FUNCTION -------------------------");
+
+let arr11 = [9, 6, 2, 10, 3, 8, 4, 1, 5, 7];
+
+let evenNum = arr11.filter((n) => n % 2 == 0);
+console.log("Even digit from arr11 are :", evenNum);
+
+let moreThanFive = arr11.filter((n) => n > 5);
+console.log("Digits greater then 5 in arr11 are :", moreThanFive);
+
+let fromFourToEight = arr11.filter((n) => n >= 4 && n <= 8);
+console.log("Digits from 4 to 8 in arr11 are :", fromFourToEight);
+
+let divisibleByThree = arr11.filter((n) => n % 3 == 0);
+console.log("Digits divisible by 3 in arr11 are :", divisibleByThree);
+
+let removeFive = arr11.filter((n) => !(n == 5));
+console.log("Removing digit5 from arr11 are :", removeFive);
+
+let removeMultipleOfThree = arr11.filter((n) => !(n % 3 == 0));
+console.log(
+  "Removing digits divisible by 3 in arr11 are :",
+  removeMultipleOfThree,
+);
+
+let removeThreeToSeven = arr11.filter((n) => !(n >= 3 && n <= 7));
+console.log("Removing digits from 3 to 7 in arr11 are :", removeThreeToSeven);
+
+let digSqrLessThan50 = arr11.filter((n) => n * n < 50);
+console.log(
+  "Digits having square less than 50 in arr11 are :",
+  digSqrLessThan50,
+);
+
+let primeNum = arr11.filter((n) => {
+  for (let i = 2; i < n; i++) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return n > 1;
+});
+console.log("Prime numbers in arr11 are :", primeNum);
+
+let evenIndexDigits = arr11.filter((n, i) => i % 2 === 0);
+console.log("Digits at even Index in arr11 are :", evenIndexDigits);
+
+let arr12 = [5, 2, 3, 1, 5, 2, 3, 7, 6, 8, 9, 2, 5, 3, 7, 4, 1, 6];
+let uniqueArr12 = arr12.filter((curr, ind, arr) => arr.indexOf(curr) === ind);
+console.log(uniqueArr12);
+
+let arr = [0, 1, false, 2, "", 3, null];
+let clean = arr.filter(Boolean);
+console.log("Cleaned arr : ", clean);
+
+let fruits = ["apple", "banana", "mango", "grape", "orange", "avacado"];
+
+let aStartFruit = fruits.filter((fr) => fr.startsWith("a"));
+console.log(aStartFruit);
+let eEndFruit = fruits.filter((fr) => fr.endsWith("e"));
+console.log(eEndFruit);
+let anIncludingFruit = fruits.filter((fr) => fr.includes("an"));
+console.log(anIncludingFruit);
+let longFruit = fruits.filter((fr) => fr.length > 5);
+console.log(longFruit);
+
+let people = [
+  { name: "Kiran", age: 27, city: "Delhi", dept: "IT", salary: 52000 },
+  { name: "Raja", age: 25, city: "Delhi", dept: "IT", salary: 90000 },
+  { name: "Vicky", age: 30, city: "Mumbai", dept: "HR", salary: 70000 },
+  { name: "Aman", age: 25, city: "Delhi", dept: "Finance", salary: 55000 },
+  { name: "Neha", age: 28, city: "Pune", dept: "IT", salary: 85000 },
+  { name: "Rahul", age: 30, city: "Delhi", dept: "IT", salary: 50000 },
+  { name: "Priya", age: 25, city: "Mumbai", dept: "HR", salary: 62000 },
+  { name: "Saurabh", age: 28, city: "Pune", dept: "Finance", salary: 48000 },
+  { name: "Kiran", age: 27, city: "Delhi", dept: "IT", salary: 52000 },
+  { name: "Anjali", age: 30, city: "Mumbai", dept: "Finance", salary: 68000 },
+  { name: "Deepak", age: 27, city: "Delhi", dept: "HR", salary: 74000 },
+  { name: "Rahul", age: 30, city: "Delhi", dept: "IT", salary: 50000 },
+];
+
+let unikObj = people.filter(
+  (p, i, a) => a.findIndex((x) => x.name === p.name) === i,
+);
+console.log("Unique Objects are : ", unikObj);
+
+let aInName = people.filter((nm) => !nm.name.toLowerCase().includes("a"));
+console.log(aInName);
+
+let delhiPeople = people.filter((person) => person.city === "Delhi");
+console.log(delhiPeople);
+
+let aboveAgeTwentySeven = people.filter((person) => person.age > 27);
+console.log(aboveAgeTwentySeven);
+
+let salaryAbove60k = people.filter((person) => person.salary > 60000);
+console.log(salaryAbove60k);
+
+let itGuys = people.filter((person) => person.dept === "IT");
+console.log(itGuys);
+
+let delhiPersonAbove55k = people.filter(
+  (person) => person.city === "Delhi" && person.salary > 55000,
+);
+console.log(delhiPersonAbove55k);
