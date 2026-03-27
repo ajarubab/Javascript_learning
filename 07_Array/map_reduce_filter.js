@@ -1,205 +1,151 @@
-/*
-console.log("------------------------------------ MAP FUNCTION ----------------------------------------");
 
-// use of map function always works on all elements of that array and returns a new array
+// ***************** MAP *****************
 
-//--------------------------- Use of Map function using callback function ----------------------------------------------
+//------- using callback function -------
 
-let arr1 = [4, 6, 2, 8, 3, 9];
+let arr = [4, 6, 2, 8, 3, 9];
 
 function double(x) {
-    return x * 2;
+  return x * 2;
 }
 
-let output1 = arr1.map(double);
-console.log("The double of arr1 elements are using map with callback function : ", output1);
+let output1 = arr.map(double);
+console.log("The double of arr elements are using map with callback function : ", output1);
 
-//-------------------------------- Use of Map function using inline function -----------------------------------------
+//------- using inline function -------
 
-let output2 = arr1.map(
-    function double(x) {
-        return x * 2;
-    }
+let output2 = arr.map(
+  function double(x) {
+    return x * 2;
+  }
 );
-console.log("The double of arr1 elements are using map with HOF : ", output2);
+console.log("The double of arr elements are using map with HOF : ", output2);
 
-//-------------------------------- Use of Map function using anonymous function -----------------------------------------
+//------- using anonymous function -------
 
-let output3 = arr1.map(
-    function (x) {
-        return x * 2;
-    }
+let output3 = arr.map(
+  function (x) {
+    return x * 2;
+  }
 );
-console.log("The double of arr1 elements are using map with anonymous function  : ", output3);
+console.log("The double of arr elements are using map with anonymous function  : ", output3);
 
-//----------------------------- Use of Map function using arrow function --------------------------------------------
+//------- using arrow function -------
 
 // For block body syntax (i.e. with {}), the return statement is required
-let output4 = arr1.map((x) => {
-    return x * 2;
+let output4 = arr.map((x) => {
+  return x * 2;
 });
-console.log("The double of arr1 elements using arrow function :", output4);
+console.log("The double of arr elements using arrow function :", output4);
 
 
 // For single expression (i.e. without {}), return is implicit
-let output5 = arr1.map((x) => x * 2);
-console.log("The double of arr1 elements using arrow function with single expression :", output5);
-
-//-------------------------------------------------------------------------
-
-let arr6 = [2, 3, 4, 5, 6, 7, 8];
+let output5 = arr.map((x) => x * 2);
+console.log("The double of arr elements using arrow function with single expression :", output5);
 
 // Parentheses are optional when there is only one parameter
-let result = arr6.map(n => n ** 2);
-console.log("The actual arr6 elements are : ", arr6);   // Actual array remains intact
+let result = arr.map(n => n ** 2);
+console.log("The actual arr elements are : ", arr);   // Actual array remains intact
 console.log("The array when its all element are squared :", result);
 
-//---------------------- 2 parameter use of map function ---------------------------------------------------
+//------- 2 parameter use of map function -------
 
 let subj = ['Html', "CSS", `Javascript`, "React"];
 let indexedSub1 = subj.map(
-    (sub, index) => { return `Subject Id : ${index + 1}, Subject : ${sub}` }    // return of array of strings
+  (sub, index) => { return `Subject Id : ${index + 1}, Subject : ${sub}` }    // return of array of strings
 );
 console.log("SubjectId and their Ids : ", indexedSub1);
 
 let indexedSub2 = subj.map(
-    (sub, index) => ({ SubjectId: (index + 1), Subject: (sub) })   // return of array of objects
+  (sub, index) => ({ SubjectId: (index + 1), Subject: (sub) })   // return of array of objects
 );
 console.log("SubjectId and subject : ", indexedSub2);
 
-//---------------------- 3 parameter use of map function ---------------------------------------------------
+//------- 3 parameter use of map function -------
 
 let IndSubWithArray = subj.map(
-    (subject, index, arr) => {
-        return `Id : ${index}, Subject : ${subject}, From : ${arr}`;
-    }
+  (subject, index, arr) => {
+    return `Id : ${index}, Subject : ${subject}, From : ${arr}`;
+  }
 );
 console.log(IndSubWithArray);
 
-//----------------------- Chaining of map function --------------------------------------------------
+//------- Chaining of map function -------
 
-let arrr = [1, 3, 2, 4, 6, 5];
-let chainedMap = arrr.map(x => x * 2).map(x => x + 3);
+let chainedMap = arr.map(x => x * 2).map(x => x + 3);
 console.log(chainedMap);
 
-//----------------------- use of map function with condition --------------------------------------------------
+//------- use of map function with condition -------
 
-let arry = [1, 3, 2, 4, 6, 5];
-
-let cubeEvenZeroOdd = arry.map((x, ind) => {
-    if (x % 2 === 0) {
-        x = x ** 3;
-    } else {
-        x = x * 0;
-    }
-    return `${arry[ind]} : ${x}`;
+let cubeEvenZeroOdd = arr.map((x, ind) => {
+  if (x % 2 === 0) {
+    x = x ** 3;
+  } else {
+    x = x * 0;
+  }
+  return `${arr[ind]} : ${x}`;
 });
 console.log(cubeEvenZeroOdd);
 
-let sqrEven = arry.map((x) => {
-    x = x % 2 === 0 ? x ** 2 : x;
-    return x;
+let sqrEven = arr.map((x) => {
+  x = x % 2 === 0 ? x ** 2 : x;
+  return x;
 });
 console.log(sqrEven);
 
-let sqrEvencubeOdd = arry.map(x => x % 2 === 0 ? x ** 2 : x ** 3);
+let sqrEvencubeOdd = arr.map(x => x % 2 === 0 ? x ** 2 : x ** 3);
 console.log(sqrEvencubeOdd);
 
-//----------------------- Use of map function on array of Objects --------------------------------------------------
 
-let allusers = [
-    { name: "Raja", age: 25 },
-    { name: "Vicky", age: 30 },
-];
-
-let usernames = allusers.map(person => person.name);
-console.log("user names are : ", usernames);
-
-let usersage = allusers.map(person => person.age);
-console.log("users ages are : ", usersage);
-
-//----------------------- Objects destructuring ---------------
-let userNamesOnly = allusers.map(({ name }) => name);
-console.log(userNamesOnly);
-
-let userAgeOnly = allusers.map(({ age }) => age);
-console.log(userAgeOnly);
-
-let userNameAge = allusers.map(({ name, age }) => `${name} is ${age} years old`);
-console.log(userNameAge);
-
-//----------------------- Objects value transformation -----------
-
-let smallCaseUserName = allusers.map(person => person.name.toLowerCase());
-console.log("small case user names are : ", smallCaseUserName);
-
-let usermailid = allusers.map(person => person.name + "@gamil.in");
-console.log("user mail ids are : ", usermailid);
-
-//----------------------- Objects key transformation ------------------
-
-let newUser = allusers.map((user) => {
-    return {
-        username: user.name,
-        userage: user.age,
-    }
-});
-console.log(newUser);
-*/
-
-// ------------- reduce() function use -----------------------
+// ***************** REDUCE *****************
 
 /**
 
-
-// syntax :
-
+syntax :
 
 array.reduce((accumulator, currentValue) => {
  return updatedValue;
 }, initialValue);
 
-//------------------------------ REDUCE ---------------------------------
+*/
 
-// -------- reduce function returns single value --------------------------
 
-let arr7 = [12, 23, 34, 45, 56, 27, 38, 54, 27, 11, 32];
+// ------- reduce function returns single value -------
 
-let sum = arr7.reduce((total, num) => total + num, 0);
+let arr1 = [12, 23, 34, 45, 56, 27, 38, 54, 27, 11, 32];
 
-console.log("Elements of arr7 are : ", arr7);
-console.log("The sum of all elements of arr7 is : ", sum);
+let sum = arr1.reduce((total, num) => total + num, 0);
 
-//-----------------------------------------------------
+console.log("Elements of arr7 are : ", arr1);
+console.log("The sum of all elements of arr1 is : ", sum);
 
-let max = arr7.reduce(
+
+let max = arr1.reduce(
   (acc, cur) => {
     return cur > acc ? cur : acc;
   }, // if initialValue not given , index 0 element value is treated as initial value automatically
 );
 console.log("Max value in arr7 is : ", max);
 
-let min = arr7.reduce((acc, cur) => {
+let min = arr1.reduce((acc, cur) => {
   return cur < acc ? cur : acc;
-}, arr7[0]);
+}, arr1[0]);
 console.log("Minimum value in arr7 is : ", min);
 
-//--------- Array transformation ( reduce as Map ) ----------------
+//------- Array transformation ( reduce as Map ) -------
 
-let arr9 = [7, 8, 5, 2, 3, 6, 9, 4];
-
-let res2 = arr9.reduce((acc, dig) => {
+let res2 = arr1.reduce((acc, dig) => {
   acc.push(dig * dig);
   // acc.push({ num: dig, sqr: dig ** 2 });
   return acc;
 }, []);
 
-console.log("Actual Array Element : ", arr9);
+console.log("Actual Array Element : ", arr1);
 console.log("Actual Array Elements Squares : ", res2);
 
-//---------- Array transformation ( reduce as Filter ) --------------
+//------- Array transformation ( reduce as Filter ) -------
 
-let res3 = arr9.reduce((acc, cur) => {
+let res3 = arr1.reduce((acc, cur) => {
   // if(cur % 2 === 0){
   //     acc.push(cur);
   // }
@@ -209,29 +155,51 @@ let res3 = arr9.reduce((acc, cur) => {
 
 console.log(res3);
 
-//------------------------ flatten the elements of nested array --------
+// ---------- use of reduceRight() -------------
 
-let arr10 = [[1, 2], [9, 8], [3, 4, 5], [7], 6];
-let singleArr = arr10.reduce((acc, dig) => {
-  return acc.concat(dig);
+let revArr1 = arr1.reduceRight((acc, num) => {
+  acc.push(num);
+  return acc;
 }, []);
+console.log("Reversed Array is : ", revArr1);
 
-console.log(singleArr);
+//-------  [Array -> object transformation] -------
 
-//----------------------  [Array -> object transformation] ----------------------------------
-
-let nums = [6, 3, 9, 4, 8, 5, 7];
-let obj = nums.reduce((acc, num) => {
+let obj = arr1.reduce((acc, num) => {
   acc[num] = num * num;
   return acc;
 }, {}); // in object type, the elements gets sorted in ascending order automatically
 console.log("Number and Squares are : ", obj);
 
-//------------------------ getting frequency of elements -----------------------------
+//------- separating even and odd elements -------
+
+let evenOdd = arr1.reduce(
+  (acc, dig) => {
+    dig % 2 === 0 ? acc.even.push(dig) : acc.odd.push(dig);
+    return acc;
+  },
+  {
+    even: [],
+    odd: [],
+  },
+);
+
+console.log(evenOdd);
+
+//------- flatten the elements of nested array -------
+
+let arr2 = [[1, 2], [9, 8], [3, 4, 5], [7], 6];
+let singleArr = arr2.reduce((acc, dig) => {
+  return acc.concat(dig);
+}, []);
+
+console.log(singleArr);
+
+//------- getting frequency of elements -------
 
 let digArr = [
-  3, 7, 1, 4, 9, 3, 0, 7, 1, 2, 9, 1, 6, 4, 3, 8, 2, 5, 7, 2, 4, 9, 3, 0, 7, 5,
-  2, 9, 3,
+  3, 7, 1, 4, 9, 3, 0, 7, 1, 2, 9, 1, 6, 4, 3,
+  8, 2, 5, 7, 2, 4, 9, 3, 0, 7, 5, 2, 9, 3,
 ];
 
 let digFreq = digArr.reduce((acc, dig) => {
@@ -252,7 +220,7 @@ let digFreq2 = digArr.reduce(
 );
 console.log("Array digits and their frequencies : ", digFreq2);
 
-//------------------------ removing duplicate value from the array ---------
+//------- removing duplicate value from the array -------
 
 let uniqueDigits = digArr.reduce((acc, dig) => {
   if (!acc.includes(dig)) {
@@ -262,37 +230,386 @@ let uniqueDigits = digArr.reduce((acc, dig) => {
 }, []);
 console.log("Unique value are : ", uniqueDigits);
 
-//------------------------ separating even and odd elements ---------
 
-let evenOdd = arr9.reduce(
-  (acc, dig) => {
-    dig % 2 === 0 ? acc.even.push(dig) : acc.odd.push(dig);
-    return acc;
-  },
-  {
-    even: [],
-    odd: [],
-  },
+// ***************** FILTER *****************
+
+let evenNum = arr1.filter((n) => n % 2 == 0);
+console.log("Even digit from arr1 are :", evenNum);
+
+let moreThanFive = arr1.filter((n) => n > 5);
+console.log("Digits greater then 5 in arr1 are :", moreThanFive);
+
+let fromFourToEight = arr1.filter((n) => n >= 4 && n <= 8);
+console.log("Digits from 4 to 8 in arr1 are :", fromFourToEight);
+
+let divisibleByThree = arr1.filter((n) => n % 3 == 0);
+console.log("Digits divisible by 3 in arr1 are :", divisibleByThree);
+
+let removeFive = arr1.filter((n) => !(n == 5));
+console.log("Removing digit5 from arr1 are :", removeFive);
+
+let removeMultipleOfThree = arr1.filter((n) => !(n % 3 == 0));
+console.log(
+  "Removing digits divisible by 3 in arr1 are :",
+  removeMultipleOfThree,
 );
 
-console.log(evenOdd);
+let removeThreeToSeven = arr1.filter((n) => !(n >= 3 && n <= 7));
+console.log("Removing digits from 3 to 7 in arr1 are :", removeThreeToSeven);
 
-//------------------------ Groupby using reduce -----------------------------
+let digSqrLessThan50 = arr1.filter((n) => n * n < 50);
+console.log(
+  "Digits having square less than 50 in arr1 are :",
+  digSqrLessThan50,
+);
 
-let people = [
-  { name: "Raja", age: 25, city: "Delhi", dept: "IT", salary: 90000 },
-  { name: "Vicky", age: 30, city: "Mumbai", dept: "HR", salary: 70000 },
-  { name: "Aman", age: 25, city: "Delhi", dept: "Finance", salary: 55000 },
-  { name: "Neha", age: 28, city: "Pune", dept: "IT", salary: 85000 },
-  { name: "Rahul", age: 30, city: "Delhi", dept: "IT", salary: 50000 },
-  { name: "Priya", age: 25, city: "Mumbai", dept: "HR", salary: 62000 },
-  { name: "Saurabh", age: 28, city: "Pune", dept: "Finance", salary: 48000 },
-  { name: "Kiran", age: 27, city: "Delhi", dept: "IT", salary: 52000 },
-  { name: "Anjali", age: 30, city: "Mumbai", dept: "Finance", salary: 68000 },
-  { name: "Deepak", age: 27, city: "Delhi", dept: "HR", salary: 74000 },
+let primeNum = arr1.filter((n) => {
+  for (let i = 2; i < n; i++) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+  return n > 1;
+});
+console.log("Prime numbers in arr1 are :", primeNum);
+
+let evenIndexDigits = arr1.filter((n, i) => i % 2 === 0);
+console.log("Digits at even Index in arr1 are :", evenIndexDigits);
+
+let arr3 = [5, 2, 3, 1, 5, 2, 3, 7, 6, 8, 9, 2, 5, 3, 7, 4, 1, 6];
+let uniqueArr3 = arr3.filter((curr, ind, arr) => arr.indexOf(curr) === ind);
+console.log(uniqueArr3);
+
+let arr4 = [0, 1, false, 2, "", 3, null];
+let clean = arr4.filter(Boolean);
+console.log("Cleaned arr : ", clean);
+
+let fruits = ["apple", "banana", "mango", "grape", "orange", "avacado"];
+
+let aStartFruit = fruits.filter((fr) => fr.startsWith("a"));
+console.log(aStartFruit);
+let eEndFruit = fruits.filter((fr) => fr.endsWith("e"));
+console.log(eEndFruit);
+let anIncludingFruit = fruits.filter((fr) => fr.includes("an"));
+console.log(anIncludingFruit);
+let longFruit = fruits.filter((fr) => fr.length > 5);
+console.log(longFruit);
+
+// ***************** FILTER + MAP *****************
+
+// (1). Double Even Number
+
+let ans1 = arr1
+  .filter((n) => n % 2 === 0)
+  .map((n) => n * 2);
+console.log("Double of Even elements ony are : ", ans1);
+
+// (2). Square value of Elements which are > 10
+
+let ans2 = arr1
+  .filter((n) => n > 10)
+  .map((n) => n * n);
+console.log("Squered value of elements greater than 10 are :", ans2);
+
+// (3). Cube of Odd values Elements
+
+let ans3 = arr1
+  .filter(n => n % 2 !== 0)
+  .map(n => n * n * n);
+console.log("The cube of odd valued elements are :", ans3);
+
+let names = [
+  "aman", "rohit", "alex", "john", "ankit", "sara",
+  "mohan", "ajay", "vikas", "arjun", "xavier"
 ];
 
-//------------ Lookup Operation using reduce ------------------
+// (4). Capitalise all names Starting with alphabet "a"
+
+let ans4 = names
+  .filter(n => n.startsWith("a"))
+  .map(n => n.toUpperCase());
+console.log("Fltered Names :", ans4);
+
+// (5). Reverse the name having length > 4
+
+let ans5 = names
+  .filter(n => n.length > 4)
+  .map(n => n.split("").reverse()
+    .join(""));
+console.log("Customized names:", ans5);
+
+// ***************** FILTER + REDUCE *****************
+
+// (17.) Count numbers > 10
+
+let ans17 = arr1
+  .filter(n => n > 10)
+  .reduce(count => count + 1, 0);
+console.log(`There are ${ans17} numbers which are more than 10.`);
+
+// (18.) Sum of only even numbers
+
+let ans18 = arr1
+  .filter(n => n % 2 === 0)
+  .reduce((sum, num) => sum + num, 0);
+console.log("Sum of even numbers only are :", ans18);
+
+// (19.) Get Max number which is greater than 10
+
+let ans19 = arr1
+  .filter(n => n > 10)
+  .reduce((acc, num) => acc > num ? acc : num, 0);
+console.log("The Highest number which is greater than 10 is : ", ans19);
+
+// (20). Get the sum of squares of even numbers
+
+let ans20 = arr1
+  .filter(n => n % 2 === 0)
+  .reduce((sum, num) => sum + num * num, 0);
+console.log("The sum of squares of even numbers of arr1 is: ", ans20);
+
+// (22). Get the sum of numbers between 5-20
+
+let ans21 = arr1
+  .filter(n => (n >= 5 && n <= 20))
+  .reduce((sum, num) => sum + num, 0);
+console.log("The sum of numbers between from 5 to 20 of arr1 is :", ans21);
+
+// (22). Get the average of odd numbers
+
+let odds = arr1.filter(n => n % 2 !== 0);
+let ans22 = odds.reduce((acc, sum) => acc + sum, 0) / odds.length;
+console.log("The average of odd numbers is:", ans22);
+
+let answ22 = arr1
+  .filter(n => n % 2 !== 0)
+  .reduce((acc, n, i, arr) => acc + n / arr.length, 0);
+console.log("The average of odd numbers is:", answ22);
+
+// (23). Get the sum of all numbers excluding smallest one
+
+let smallestNum = arr1.reduce((acc, num) => acc < num ? acc : num);
+console.log("The minimum number in the arr1 is : ", smallestNum);
+let ans23 = arr1
+  .filter(n => n !== smallestNum)
+  .reduce((s, n) => s + n, 0);
+console.log("Sum of all number except minimim one is : ", ans23);
+
+// (24). Get the prime numbers
+
+let primes = arr1
+  .filter(
+    n => {
+      for (let i = 2; i < n; i++) {
+        if (n % i === 0) {
+          return false;
+        }
+      }
+      return n > 1;
+    }
+  );
+
+let primeCount = primes.reduce(n => n + 1, 0);
+let ans24 = primes.reduce((pro, n) => pro * n, 1);
+console.log("Prime number are : ", primes);
+console.log("Total prime number count are : ", primeCount);
+console.log("Total prime number product is : ", ans24);
+
+// (25). Sum of all unique values
+
+let arr5 = [
+  5, 12, 7, 5, 20, 12, 3, 7, 25, 30,
+  2, 8, 3, 15, 18, 20, 25, 2, 9, 10,
+  15, 6, 8, 14, 6, 11, 9, 4, 10, 14
+];
+
+let uniques = [... new Set(arr5)].filter(n => true);
+let ans25 = uniques.reduce((s, n) => s + n, 0);
+console.log("All unique values is :", uniques);
+console.log("Sum of all unique values is :", ans25);
+
+// ***************** MAP + REDUCE *****************
+
+// (26). Sum of Squares
+
+let ans26 = arr1
+  .map(n => n * n)
+  .reduce((s, n) => s + n, 0);
+console.log("The Sum of squares of values are :", ans26);
+
+// (27). Concatenate as String
+
+let ans27 = arr1
+  .map(n => n.toString())
+  .reduce((a, s) => a + ", " + s, "");
+console.log("Concatenated values are :", ans27);
+
+// (28). Sum of even numbers
+
+let ans28 = arr1
+  .map(n => n % 2 === 0 ? n : 0)
+  .reduce((s, n) => s + n, 0);
+console.log("Sum of even numbers : ", ans28);
+
+// (29). Weighted sum of all elements
+
+let ans29 = arr1
+  .map((n, i) => n * i)
+  .reduce((s, n) => s + n, 0);
+console.log("Answer", ans29);
+
+// (30). Sum of all elements individual digits
+
+let ans30 = arr1
+  .map(n => n.toString().split('').map(Number))
+  .reduce((s, arr) => s + arr.reduce((a, b) => a + b, 0), 0);
+console.log("Sum of all elements individual digits is : ", ans30);
+
+// ***************** FILTER + MAP + REDUCE *****************
+
+let arr6 = [12, 5, 8, 20, 3, 15, 7, 30, 2, 25, 18];
+
+// ------- find the sum of sqaure of even numbers -------
+
+let ans36 = arr6
+  .filter(n => n % 2 === 0)
+  .map(n => n * n)
+  .reduce((acc, sum) => acc + sum, 0);
+console.log(ans36);
+
+// ------- find the sum of double of the numbers > 10 -------
+
+let ans37 = arr6
+  .filter(n => n > 10)
+  .map(n => n * 2)
+  .reduce((acc, sum) => acc + sum, 0);
+console.log(ans37);
+
+// ------- find the string of odd the numbers -------
+
+let ans38 = arr6
+  .filter(n => n % 2 !== 0)
+  .map(n => n.toString())
+  .reduce((acc, num) => acc + "_" + num);
+console.log(ans38);
+
+// ------- get the count of even squared number which are less than 100 -------
+
+let ans39 = arr6
+  .filter(n => n % 2 === 0)
+  .map(n => n * n).filter(n => n < 100)
+  .reduce((acc) => acc + 1, 0);
+console.log(ans39);
+
+//------- Get the Sum of all digits of odd numbers -------
+
+let ans40 = arr6
+  .filter(n => n % 2 !== 0)
+  .map(n => n.toString().split('').map(Number))
+  .reduce((a, c) => a + c.reduce((b, sum) => b + sum, 0), 0);
+
+console.log(ans40);
+
+let ans41 = arr6
+  .filter(n => n % 2 !== 0)
+  .map(n => n.toString().split('').map(Number))
+  .map(digits => digits.reduce((a, b) => a + b, 0))
+  .reduce((sum, n) => sum + n, 0);
+
+console.log(ans41);
+
+
+console.log("---------------- Operation on ARRAY of OBJECTS --------------------");
+
+let rawData = [
+  { name: "Vikas", age: 35, salary: 80000, city: "Delhi", role: "Manager", experience: 10, department: "Management", joiningYear: 2015, skills: ["Strategy"], rating: 4.0 },
+  { name: "Ram", age: 25, salary: 50000, city: "Delhi", role: "Developer", experience: 3, department: "IT", joiningYear: 2021, skills: ["JS", "React"], rating: 4.2 },
+  { name: "Shyam", age: 17, salary: 20000, city: "Noida", role: "Intern", experience: 0, department: "IT", joiningYear: 2024, skills: ["HTML"], rating: 3.5 },
+  { name: "Aman", age: 30, salary: 70000, city: "Gurgaon", role: "Manager", experience: 7, department: "Management", joiningYear: 2018, skills: ["Leadership", "Excel"], rating: 4.7 },
+  { name: "Riya", age: 22, salary: 40000, city: "Delhi", role: "Designer", experience: 2, department: "Design", joiningYear: 2022, skills: ["Figma", "UI"], rating: 4.1 },
+  { name: "Karan", age: 19, salary: 30000, city: "Faridabad", role: "Support", experience: 1, department: "Support", joiningYear: 2023, skills: ["Communication"], rating: 3.8 },
+  { name: "Neha", age: 28, salary: 60000, city: "Noida", role: "Developer", experience: 5, department: "IT", joiningYear: 2020, skills: ["JS", "Node"], rating: 4.5 },
+  { name: "Vikas", age: 35, salary: 80000, city: "Delhi", role: "Manager", experience: 10, department: "Management", joiningYear: 2015, skills: ["Strategy"], rating: 4.0 },
+  { name: "Pooja", age: 24, salary: 45000, city: "Gurgaon", role: "HR", experience: 3, department: "HR", joiningYear: 2021, skills: ["Recruitment"], rating: 4.3 },
+  { name: "Sonal", age: 18, salary: 25000, city: "Noida", role: "Intern", experience: 1, department: "IT", joiningYear: 2023, skills: ["HTML", "CSS"], rating: 3.6 },
+  { name: "Arjun", age: 21, salary: 52000, city: "Delhi", role: "Developer", experience: 2, department: "IT", joiningYear: 2022, skills: ["JS", "CSS"], rating: 4.0 },
+  { name: "Sonal", age: 18, salary: 25000, city: "Noida", role: "Intern", experience: 1, department: "IT", joiningYear: 2023, skills: ["HTML", "CSS"], rating: 3.6 },
+  { name: "Aman", age: 30, salary: 70000, city: "Gurgaon", role: "Manager", experience: 7, department: "Management", joiningYear: 2018, skills: ["Leadership", "Excel"], rating: 4.7 }
+];
+
+
+let people = Array.from(
+  new Set(rawData.map(p => JSON.stringify(p)))
+).map(p => JSON.parse(p));
+
+console.log(people);
+console.table(people, ['name', 'department', 'salary']);
+
+// ***************** MAP *****************
+
+let usernames = people.map(person => person.name);
+console.log("user names are : ", usernames);
+
+let usersage = people.map(person => person.age);
+console.log("users ages are : ", usersage);
+
+//----------------------- Objects destructuring ---------------
+
+let userNamesOnly = people.map(({ name }) => name);
+console.log(userNamesOnly);
+
+let userAgeOnly = people.map(({ age }) => age);
+console.log(userAgeOnly);
+
+let userNameAge = people.map(({ name, age }) => `${name} is ${age} years old`);
+console.log(userNameAge);
+
+//----------------------- Objects value transformation -----------
+
+let smallCaseUserName = people.map(person => person.name.toLowerCase());
+console.log("small case user names are : ", smallCaseUserName);
+
+let usermailid = people.map(person => person.name + "@gamil.in");
+console.log("user mail ids are : ", usermailid);
+
+//----------------------- Objects key transformation ------------------
+
+let newUser = people.map((user) => {
+  return {
+    username: user.name,
+    userage: user.age,
+  }
+});
+console.log(newUser);
+
+// ***************** FILTER *****************
+
+let unikObj = people.filter(
+  (p, i, a) => a.findIndex((x) => x.name === p.name) === i,
+);
+console.log("Unique Objects are : ", unikObj);
+
+let aInName = people.filter((nm) => !nm.name.toLowerCase().includes("a"));
+console.log(aInName);
+
+let delhiPeople = people.filter((person) => person.city === "Delhi");
+console.log(delhiPeople);
+
+let aboveAgeTwentySeven = people.filter((person) => person.age > 27);
+console.log(aboveAgeTwentySeven);
+
+let salaryAbove60k = people.filter((person) => person.salary > 60000);
+console.log(salaryAbove60k);
+
+let itGuys = people.filter((person) => person.dept === "IT");
+console.log(itGuys);
+
+let delhiPersonAbove55k = people.filter(
+  (person) => person.city === "Delhi" && person.salary > 55000,
+);
+console.log(delhiPersonAbove55k);
+
+// ***************** REDUCE *****************
 
 let peopleByName = people.reduce((acc, p) => {
   acc[p.name] = p;
@@ -456,110 +773,323 @@ let grpBySalRange = people.reduce((acc, p) => {
 }, {});
 console.log("people Satus according to their Salary range : ", grpBySalRange);
 
+// -------------- Nested Array Flattening ------------
+
+let nestedArr = [1, [2, [3, [4]]]];
+
+function flatten(nestedArr) {
+  return nestedArr.reduce((acc, val) =>
+    Array.isArray(val) ? acc.concat(flatten(val)) : acc.concat(val), []);
+}
+
+console.log("Flattened Array is : ", flatten(nestedArr));
+
+
+// ***************** FILTER + MAP *****************
+
+let unikNames = people
+  .map(p => p.name)
+  .filter((nm, i, a) => a.indexOf(nm) === i);
+console.log("Unique Names are : ", unikNames);
+
+// --- All developer name --------------------
+let ans42 = people.filter(p => p.role === "Developer").map(p => p.name);
+console.log("The developer are : ", ans42);
+
+// --- Name department and salary of people having salary more than 50k -------------------
+
+let ans44 = people
+  .filter(p => p.salary > 50000)
+  .map(p => ({ Name: p.name, department: p.department, Salary: p.salary }));
+console.log(ans44);
+
+// (6). Get the user names of IT developer guys
+
+let ans6 = people
+  .filter(u => u.department == "IT" && u.role == "Developer")
+  .map(u => u.name);
+console.log(ans6);
+
+// (7). Get the user names having ratings > 4.3
+
+let ans7 = people
+  .filter(u => u.rating > 4.3)
+  .map(u => u.name);
+console.log(" User having ratings more than 4.3 are: ", ans7);
+
+// (8). Get the user names who joined after 2021
+
+let ans8 = people
+  .filter(u => u.joiningYear > 2021)
+  .map(u => u.name);
+console.log("People who joined after 2021 are :", ans8);
+
+// (9). Reward bonus 10000 who's experince is more than 3 years
+
+let ans9 = people
+  .filter(u => u.experience > 3)
+  .map(u => u.salary + 10000);
+console.log("Salary of people after 10000 reward for more than 3 year experience :", ans9);
+
+// (10). User name and all Skills having JS skill
+
+let ans10 = people
+  .filter(u => u.skills.includes("JS"))
+  .map(u => ({ Name: u.name, Skills: u.skills }));
+console.log("people having JS skill are : ", ans10);
+
+// (11.) Increase the salary of people except interns by 20%
+
+let ans11 = people
+  .filter(u => u.role !== "Intern")
+  .map(u => ({ name: u.name, role: u.role, salary: u.salary * 1.2 }));
+console.log(ans11);
+
+// (12.) Add a key level: "Junior" id experience is < 3 years
+
+let ans12 = people
+  .filter(u => u.experience < 3)
+  .map(u => ({ ...u, level: "Junior" }));
+console.log("Junior people are:", ans12);
+
+// (13.) Join the Skills to show as single string as String of Developers 
+
+let ans13 = people
+  .filter(u => u.role === "Developer")
+  .map(u => ({
+    name: u.name,
+    skills: u.skills.join(", ")
+  }));
+console.log("Output:", ans13);
+
+// (14.) Full summary strirng of username and role having age < 25 and rating > 4
+
+let ans14 = people
+  .filter(u => (u.age < 25 && u.rating > 4))
+  .map(u => `${u.name} (${u.role}) - ${u.rating}`);
+console.log("Result : ", ans14);
+
+// (15.) Fetch name. department and Skills of the people having more than one skills
+
+let ans15 = people
+  .filter(u => (u.skills.length > 1))
+  .map(u => ({ Name: u.name, Department: u.department, Skills: u.skills }));
+console.log("The Output is:", ans15);
+
+// (16.) List the name and salary of all people who are not Interns or Support
+
+let ans16 = people
+  .filter(u => (u.role !== "Intern" && u.role !== "Support"))
+  .map(u => `${u.name} : ${u.salary}`);
+console.log("The Result is:", ans16);
+
+// ------- use of flatmap() ------------------
+
+let myarr = ["hello world", "hi there"];
+
+let words = myarr.flatMap(str => str.split(" "));
+console.log("My Array using flatmap is : ", words);
+
+// ***************** FILTER + REDUCE *****************
+
+// --- Toal IT people count -------------------
+
+let ans43 = people.filter(p => p.department === "IT").reduce(acc => acc + 1, 0);
+console.log("Total IT Employee : ", ans43);
+
+// Total salary combined of developers
+
+let totalDevSal = people
+  .filter(p => p.role === "Developer")
+  .reduce((total, p) => total + p.salary, 0);
+console.log("The total salary of the developers are : ", totalDevSal);
+
+// Get the Count of total Interns
+
+let totalInternCount = people
+  .filter(p => p.role === "Intern")
+  .reduce(c => c + 1, 0);
+console.log("Total Interns are :", totalInternCount);
+
+// Highest salary person among developers
+
+let mpd = people
+  .filter(p => p.role === "Developer")
+  .reduce((max, p) => p.salary > max.salary ? p : max);
+console.log("Max paid dev is : ", { naam: mpd.name, salary: mpd.salary });
+
+// get the sum of all people having skill of JS and experience more than 2 years
+let res1 = people
+  .filter(u => u.skills.includes("JS") && u.experience > 2)
+  .reduce((sum, p) => sum + p.salary, 0);
+console.log("Output : ", res1);
+
+// get the count of all non IT people
+
+let myresult2 = people
+  .filter(u => u.department !== "IT")
+  .reduce(c => c + 1, 0);
+console.log("There are", myresult2, "NON-IT people.");
+
+// Get the name and salary only as OBJECT of IT department people
+
+let myresult3 = people
+  .filter(p => p.department === "IT")
+  .reduce((acc, p) => {
+    acc[p.name] = p.salary
+    return acc;
+  }, {});
+console.log("Name and Salary of IT department people are : ", myresult3);
+
+// Get the name and experience OBJECT of people having salary more than 50k
+
+let res4 = people
+  .filter(p => p.salary > 50000)
+  .reduce((acc, p) => {
+    acc[p.name] = { Exp: p.experience, Sal: p.salary }
+    return acc;
+  }, {});
+console.log("Name, experience and Salary of people having sal > 50k :", res4);
+
+
+// Get the name and experience ARRAY of people having salary more than 50k
+
+let res5 = people
+  .filter(p => p.salary > 50000)
+  .reduce((acc, p) => {
+    acc.push({ name: p.name, exp: p.experience, Sal: p.salary })
+    return acc
+  }, []);
+console.log("Name, experience and Salary of people having sal > 50k :", res5);
+
+// Get the list of Delhi people acc to grouped by their role as OBJECT
+
+let res6 = people
+  .filter(p => p.city === "Delhi")
+  .reduce((acc, p) => {
+    (acc[p.role] = acc[p.role] || []).push(p.name);
+    return acc;
+  }, {});
+console.log("Delhi people according to their role are :", res6);
+
+// Get the list of people departmentwise who have joined after 2021
+
+let res7 = people
+  .filter(p => p.joiningYear > 2021)
+  .reduce((acc, p) => {
+    (acc[p.department] = acc[p.department] || [])
+      .push({ name: p.name, age: p.age, sal: p.salary });
+    return acc;
+  }, {});
+console.log("Department waise people who joined after 2021 :", res7);
+
+// Get the list of people departmentwise who have joined after 2021
+
+let res8 = people
+  .filter(p => p.rating > 4)
+  .reduce((acc, p) => {
+    acc[p.role] = (acc[p.role] || 0) + 1;
+    return acc;
+  }, {});
+console.log("Role wise count who have rating > 4 are :", res8);
+
+// ***************** MAP + REDUCE *****************
+
+// (31). Average Age
+
+let ans31 = people
+  .map(p => p.age)
+  .reduce((acc, sum, _, arr) => acc + sum / arr.length, 0);
+console.log("Average age of IT persons :", ans31);
+
+// (32). Max Salary in Company
+
+let ans32 = people
+  .map(p => p.salary)
+  .reduce((acc, max) => max > acc ? max : acc, 0);
+console.log("Max Salary is :", ans32);
+
+// (33). Get all Unique Skills in One Array
+
+let arr33 = people
+  .map(p => p.skills)
+  .reduce(
+    (acc, skills) => {
+      skills.forEach(
+        skill => {
+          if (!acc.includes(skill)) acc.push(skill);
+        });
+      return acc;
+    }, []);
+console.log("All Unique Skills in an array is :", arr33);
+
+
+// ----------- Structure by Map and Object by Reduce --------------------
+
+let exp = people
+  .map(p => (({ key: p.name, value: p.city })))
+  .reduce((acc, person) => {
+    acc[person.key] = person.value;
+    return acc;
+  }, {});
+console.log("The Name and City are : ", exp);
+
+let exp2 = people.map(p => [p.name, p.salary])
+  .reduce((acc, [name, salary]) => {
+    acc[name] = salary;
+    return acc;
+  }, {});
+console.log("Name and Sal : ", exp2);
+
+// (34). Total Salary per city
+
+let ans34 = people
+  .map(p => ({ sheher: p.city, vetan: p.salary }))
+  .reduce((acc, p) => {
+    acc[p.sheher] = (acc[p.sheher] || 0) + p.vetan;
+    return acc;
+  }, {});
+console.log("Total Salary Fund per city is : ", ans34);
+
+// -------- get the sum of salary * experience of each department of each city ----
+
+let ans35 = people
+  .map(p => ({ city: p.city, dpt: p.department, sal: p.salary, exp: p.experience }))
+  .reduce((acc, { city, dpt, exp, sal }) => {
+    if (!acc[city]) acc[city] = {};
+    acc[city][dpt] = (acc[city][dpt] || 0) + exp * sal;
+    return acc;
+  }, {});
+console.log(ans35);
+
+// ***************** FILTER + MAP + REDUCE *****************
+
+// --------- sum of salary of all developers -----------
+
+let ans45 = people
+  .filter(p => p.role === "Developer")
+  .map(p => p.salary)
+  .reduce((sum, sal) => sum + sal, 0);
+console.log("Sum of Salaries of all developers : ", ans45);
+
+// ***************** ANONYMOUS *****************
+
+// --------- unique skills of peoples -------------
+
+let uniqueSkills = people
+  .flatMap(p => p.skills)
+  .filter((skill, i, arr) => arr.indexOf(skill) === i);
+console.log(uniqueSkills);
+
+/**
+
+alert("This is Basic area alert");
+
+let age = prompt("What's your age dear ?");
+console.log(age);
+
+console.time('res in');
+alert("click 2 cont")
+console.timeEnd('res in');
+
 */
-
-console.log("------------------ FILTER FUNCTION -------------------------");
-
-let arr11 = [9, 6, 2, 10, 3, 8, 4, 1, 5, 7];
-
-let evenNum = arr11.filter((n) => n % 2 == 0);
-console.log("Even digit from arr11 are :", evenNum);
-
-let moreThanFive = arr11.filter((n) => n > 5);
-console.log("Digits greater then 5 in arr11 are :", moreThanFive);
-
-let fromFourToEight = arr11.filter((n) => n >= 4 && n <= 8);
-console.log("Digits from 4 to 8 in arr11 are :", fromFourToEight);
-
-let divisibleByThree = arr11.filter((n) => n % 3 == 0);
-console.log("Digits divisible by 3 in arr11 are :", divisibleByThree);
-
-let removeFive = arr11.filter((n) => !(n == 5));
-console.log("Removing digit5 from arr11 are :", removeFive);
-
-let removeMultipleOfThree = arr11.filter((n) => !(n % 3 == 0));
-console.log(
-  "Removing digits divisible by 3 in arr11 are :",
-  removeMultipleOfThree,
-);
-
-let removeThreeToSeven = arr11.filter((n) => !(n >= 3 && n <= 7));
-console.log("Removing digits from 3 to 7 in arr11 are :", removeThreeToSeven);
-
-let digSqrLessThan50 = arr11.filter((n) => n * n < 50);
-console.log(
-  "Digits having square less than 50 in arr11 are :",
-  digSqrLessThan50,
-);
-
-let primeNum = arr11.filter((n) => {
-  for (let i = 2; i < n; i++) {
-    if (n % i === 0) {
-      return false;
-    }
-  }
-  return n > 1;
-});
-console.log("Prime numbers in arr11 are :", primeNum);
-
-let evenIndexDigits = arr11.filter((n, i) => i % 2 === 0);
-console.log("Digits at even Index in arr11 are :", evenIndexDigits);
-
-let arr12 = [5, 2, 3, 1, 5, 2, 3, 7, 6, 8, 9, 2, 5, 3, 7, 4, 1, 6];
-let uniqueArr12 = arr12.filter((curr, ind, arr) => arr.indexOf(curr) === ind);
-console.log(uniqueArr12);
-
-let arr = [0, 1, false, 2, "", 3, null];
-let clean = arr.filter(Boolean);
-console.log("Cleaned arr : ", clean);
-
-let fruits = ["apple", "banana", "mango", "grape", "orange", "avacado"];
-
-let aStartFruit = fruits.filter((fr) => fr.startsWith("a"));
-console.log(aStartFruit);
-let eEndFruit = fruits.filter((fr) => fr.endsWith("e"));
-console.log(eEndFruit);
-let anIncludingFruit = fruits.filter((fr) => fr.includes("an"));
-console.log(anIncludingFruit);
-let longFruit = fruits.filter((fr) => fr.length > 5);
-console.log(longFruit);
-
-let people = [
-  { name: "Kiran", age: 27, city: "Delhi", dept: "IT", salary: 52000 },
-  { name: "Raja", age: 25, city: "Delhi", dept: "IT", salary: 90000 },
-  { name: "Vicky", age: 30, city: "Mumbai", dept: "HR", salary: 70000 },
-  { name: "Aman", age: 25, city: "Delhi", dept: "Finance", salary: 55000 },
-  { name: "Neha", age: 28, city: "Pune", dept: "IT", salary: 85000 },
-  { name: "Rahul", age: 30, city: "Delhi", dept: "IT", salary: 50000 },
-  { name: "Priya", age: 25, city: "Mumbai", dept: "HR", salary: 62000 },
-  { name: "Saurabh", age: 28, city: "Pune", dept: "Finance", salary: 48000 },
-  { name: "Kiran", age: 27, city: "Delhi", dept: "IT", salary: 52000 },
-  { name: "Anjali", age: 30, city: "Mumbai", dept: "Finance", salary: 68000 },
-  { name: "Deepak", age: 27, city: "Delhi", dept: "HR", salary: 74000 },
-  { name: "Rahul", age: 30, city: "Delhi", dept: "IT", salary: 50000 },
-];
-
-let unikObj = people.filter(
-  (p, i, a) => a.findIndex((x) => x.name === p.name) === i,
-);
-console.log("Unique Objects are : ", unikObj);
-
-let aInName = people.filter((nm) => !nm.name.toLowerCase().includes("a"));
-console.log(aInName);
-
-let delhiPeople = people.filter((person) => person.city === "Delhi");
-console.log(delhiPeople);
-
-let aboveAgeTwentySeven = people.filter((person) => person.age > 27);
-console.log(aboveAgeTwentySeven);
-
-let salaryAbove60k = people.filter((person) => person.salary > 60000);
-console.log(salaryAbove60k);
-
-let itGuys = people.filter((person) => person.dept === "IT");
-console.log(itGuys);
-
-let delhiPersonAbove55k = people.filter(
-  (person) => person.city === "Delhi" && person.salary > 55000,
-);
-console.log(delhiPersonAbove55k);
