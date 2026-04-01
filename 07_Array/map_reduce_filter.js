@@ -1,4 +1,4 @@
-
+/*
 // ***************** MAP *****************
 
 //------- using callback function -------
@@ -110,6 +110,7 @@ array.reduce((accumulator, currentValue) => {
 */
 
 
+/*
 // ------- reduce function returns single value -------
 
 let arr1 = [12, 23, 34, 45, 56, 27, 38, 54, 27, 11, 32];
@@ -1081,6 +1082,7 @@ let uniqueSkills = people
   .filter((skill, i, arr) => arr.indexOf(skill) === i);
 console.log(uniqueSkills);
 
+*/
 /**
 
 alert("This is Basic area alert");
@@ -1093,3 +1095,200 @@ alert("click 2 cont")
 console.timeEnd('res in');
 
 */
+
+// ************* SORT *********************
+
+let arr1 = [12, 23, 34, 45, 56, 27, 38, 54, 27, 11, 32];
+console.log("Actual arr1 before sorting: ", arr1);
+let sort1 = arr1.sort((a, b) => a - b);  // changes the value of actual array
+console.log("Ascending order sorting method 1: ", sort1);
+console.log("Actual arr1 after sorting 1: ", arr1);
+console.log("------------------------------------------");
+
+let arr2 = [33, 27, 38, 54, 11, 32, 12, 23, 34, 45, 56];
+console.log("Actual arr2 before sorting: ", arr2);
+let sort_1 = [...arr2].sort((a, b) => a - b);  // does not change the value of actual array
+console.log("Ascending order sorting method 2: ", sort_1);
+console.log("Actual arr2 after sorting: ", arr2);
+console.log("------------------------------------------");
+
+let arr3 = [54, 11, 32, 33, 27, 38, 12, 23, 34, 45, 56];
+console.log("Actual arr3 before sorting: ", arr3);
+let sort2 = arr3.sort((a, b) => b - a);
+console.log("Descending order sorting method 1: ", sort2);
+console.log("Actual arr3 after sorting: ", arr3);
+console.log("------------------------------------------");
+
+let arr4 = [33, 38, 54, 12, 23, 34, 45, 56, 27, 11, 32];
+console.log("Actual arr4 before sorting: ", arr4);
+let sort_2 = [...arr4].sort((a, b) => b - a);
+console.log("Descending order sorting method 2: ", sort_2);
+console.log("Actual arr4 after sorting: ", arr4);
+console.log("------------------------------------------");
+
+// ----- Evens first Odds later / Odds first even later sorting in ascending or descending order 
+let evenOdd = [...arr4].sort((a, b) => {
+
+  // ------ for even first odd later
+  // if(a%2 === 0 && b%2 !== 0) return -1;
+  // if(a%2 !== 0 && b%2 === 0) return 1;
+
+  // ------ for odd first even later
+  if (a % 2 === 0 && b % 2 !== 0) return 1;
+  if (a % 2 !== 0 && b % 2 === 0) return -1;
+
+  // return a-b;   // ascending order
+  return b - a;   // descending order
+});
+console.log("Even and Odd with Ascending and Descending :", evenOdd);
+
+// ------ sort the array closest or farthest wrt a number --------
+let closestTo30 = [...arr4].sort((a, b) => Math.abs(a - 30) - Math.abs(b - 30));
+console.log("The Closest to farthest numbers wrt 30 are : ", closestTo30);
+
+let farthestTo30 = [...arr4].sort((a, b) => Math.abs(b - 30) - Math.abs(a - 30));
+console.log("The Farthest to Closest numbers wrt 30 are : ", farthestTo30);
+
+// ---------- remove the repated digits and sort the unique digits in descending order
+repeatativeElementArray = [2, 5, 3, 7, 1, 9, 3, 0, 4, 7, 0, 2, 7, 4];
+let uniqueSorted = [...new Set(repeatativeElementArray)].sort((a, b) => b - a);
+console.log("Unique digits in descending order are :", uniqueSorted);
+
+
+let people = [
+  { name: "Ram", age: 25, salary: 60000, city: "Delhi", role: "Developer", experience: 3, department: "IT", joiningYear: 2021, skills: ["JS", "React"], rating: 4.2 },
+  { name: "Shyam", age: 23, salary: 25000, city: "Noida", role: "Intern", experience: 0, department: "IT", joiningYear: 2024, skills: ["HTML"], rating: 3.5 },
+  { name: "Riya", age: 22, salary: 40000, city: "Delhi", role: "Designer", experience: 2, department: "Design", joiningYear: 2022, skills: ["Figma", "UI"], rating: 4.1 },
+  { name: "Karan", age: 19, salary: 30000, city: "Faridabad", role: "Support", experience: 1, department: "Support", joiningYear: 2023, skills: ["Communication"], rating: 3.8 },
+  { name: "Arjun", age: 24, salary: 52000, city: "Delhi", role: "Developer", experience: 2, department: "IT", joiningYear: 2022, skills: ["JS", "CSS"], rating: 4.0 },
+  { name: "Neha", age: 28, salary: 60000, city: "Noida", role: "Developer", experience: 5, department: "IT", joiningYear: 2020, skills: ["JS", "Node", "React"], rating: 4.5 },
+  { name: "Vikas", age: 35, salary: 80000, city: "Delhi", role: "Manager", experience: 10, department: "Management", joiningYear: 2015, skills: ["Strategy"], rating: 4.0 },
+  { name: "Pooja", age: 24, salary: 45000, city: "Gurgaon", role: "HR", experience: 3, department: "HR", joiningYear: 2021, skills: ["Recruitment"], rating: 4.3 },
+  { name: "Sonal", age: 21, salary: 25000, city: "Noida", role: "Intern", experience: 1, department: "IT", joiningYear: 2023, skills: ["HTML", "CSS"], rating: 3.6 },
+  { name: "Aman", age: 30, salary: 70000, city: "Gurgaon", role: "Manager", experience: 7, department: "Management", joiningYear: 2018, skills: ["Leadership", "Excel"], rating: 4.7 }
+];
+
+// -------- Salary Ascending/Descending ----------
+
+let people_sort_1 = [...people].sort(
+  (a, b) => a.salary - b.salary
+);
+console.log("Sorted salaray wise people low to high", people_sort_1);
+
+let people_sort_2 = [...people].sort(
+  (a, b) => b.salary - a.salary
+);
+console.log("Sorted salaray wise people high to low", people_sort_2);
+
+//---------- sorting of oldest to youngest people ------
+
+let people_sort_3 = [...people].sort(
+  (a, b) => b.age - a.age
+);
+console.log("Sorted age-wise people old to young : ", people_sort_3);
+
+//---------- sorting of people according to their alphabetical order of name ------
+
+let people_sort_4 = [...people].sort(
+  (a, b) => a.name.localeCompare(b.name)
+);
+console.log("people acc to alphabetical order of names : ", people_sort_4);
+
+// sorting based on more than one parameter
+
+let people_sort_5 = [...people].sort(
+  (a, b) => {
+    if (a.salary !== b.salary) return a.salary - b.salary;
+    return a.age - b.age;
+  }
+);
+console.log("If salary is same, less age person sort first", people_sort_5);
+
+// sorting based on City
+
+let people_sort_6 = [...people].sort(
+  (a, b) => a.city.localeCompare(b.city)
+);
+console.log("Department wise sorting : ", people_sort_6);
+
+// sorting based on City + Salary
+
+let people_sort_7 = [...people].sort(
+  (a, b) => {
+    if (a.city !== b.city) return a.city.localeCompare(b.city);
+    return a.salary - b.salary;
+  }
+);
+console.log("City same than salary wise sorting : ", people_sort_7);
+
+
+// ----- Show all delhi people in the begining of the array --------
+
+let people_sort_8 = [...people].sort((a, b) => {
+  if (a.city === "Delhi") return -1;
+  if (b.city === "Delhi") return 1;
+  return 0;
+});
+console.log("Making all delhi people appear First in the array sorting : ", people_sort_8);
+
+// ----- Show all developer of delhi in the begining of the array --------
+
+let people_sort_9 = [...people].sort((a, b) => {
+  if (a.role === "Developer" && a.city === "Delhi") return -1;
+  if (b.role === "Developer" && b.city === "Delhi") return 1;
+  return 0;
+});
+console.log("Making all delhi developer appear First in the array sorting : ", people_sort_9);
+
+// ---------- person having salary closest to 50k --------------------
+
+let people_sort_10 = [...people].sort(
+  (a, b) =>
+    Math.abs(a.salary - 50000) - Math.abs(b.salary - 50000)
+);
+console.log(people_sort_10);
+
+// -------------- Most Skill count person ------------
+
+let people_sort_11 = [...people].sort((a, b) => a.skills.length - b.skills.length);
+console.log("Most skilled person : ", people_sort_11);
+
+// -------- developers first with high rating and experience --------
+
+let people_sort_12 = [...people].sort((a, b) => {
+  if (a.role === "Developer" && b.role !== "Developer") return -1;
+  if (a.role !== "Developer" && b.role === "Developer") return 1;
+
+  if (a.rating !== b.rating) return b.rating - a.rating;
+  return b.experience - a.experience;
+}
+);
+console.log(people_sort_12);
+
+// ----------- sort the people priority wise -------------
+
+let priority = {
+  "Manager": 1,
+  "HR": 2,
+  "Developer": 3,
+  "Designer": 4,
+  "Support": 5,
+  "Intern": 6
+}
+
+let people_sort_13 = [...people].sort((a, b) => {
+  return (priority[a.role] || 99) - (priority[b.role] || 99)
+});
+console.log(people_sort_13);
+
+//------ sorting same role person also salarywise while maintaining priority ------
+
+let people_sort_14 = [...people].sort((a, b) => {
+  let p1 = priority[a.role] || 99;
+  let p2 = priority[b.role] || 99;
+  if (p1 !== p2) return p1 - p2;
+  return a.age - b.age;
+
+});
+console.log(people_sort_14);
+
