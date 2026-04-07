@@ -1096,6 +1096,7 @@ console.timeEnd('res in');
 
 */
 
+/*
 // ************* SORT *********************
 
 let arr1 = [12, 23, 34, 45, 56, 27, 38, 54, 27, 11, 32];
@@ -1291,4 +1292,89 @@ let people_sort_14 = [...people].sort((a, b) => {
 
 });
 console.log(people_sort_14);
+
+*/
+
+// ********** SORT + MAP ************
+
+let arr1 = [34, 23, 12, 45, 56, 27, 38, 54, 27, 11, 32, 56];
+let uniqueArr = [... new Set(arr1)];
+console.log("Initial Array is :", arr1);
+console.log("Unique array is :", uniqueArr);
+
+// --------- sort the numbers then double them -----------
+let sm_01 = [...uniqueArr]
+  .sort((a, b) => b - a)
+  .map(n => n * 2);
+console.log(uniqueArr);
+console.log("sort in descending order than double each :", sm_01);
+
+// -------- sort and lable even/odd ---------
+
+let sm_02 = [...uniqueArr]
+  .sort((a, b) => a - b)
+  .map(n => ({
+    Num: n,
+    Type: n % 2 === 0 ? "Even" : "Odd"
+  }));
+console.log("Evens and Odds :", sm_02);
+
+// ---------- conditional maping and then sorting -------------
+
+let sm_03 = [...uniqueArr]
+  .map(n => n < 30 ? n ** 3 : n ** 2)
+  .sort((a, b) => a - b);
+console.log("cubes of < 30 and squares of > 30, then sorting : ", sm_03);
+
+// ---------- Sort + gap  + next ----------
+
+let sm_04 = [...uniqueArr]
+  .sort((a, b) => a - b)
+  .map((n, i, arr) => ({
+    current: n,
+    previous: arr[i - 1] ?? null,
+    next: arr[i + 1] ?? null,
+    gap: arr[i + 1] - n || null
+  }));
+console.log("Current previous Next and Gap : ", sm_04);
+
+// ------- Sort + cummulative sum ------
+
+let sortedArr = [...uniqueArr]
+  .sort((a, b) => a - b);
+console.log("Sorted : ", sortedArr);
+let sum = 0;
+let sm_05 = sortedArr.map((n) => {
+  sum += n;
+  return sum;
+});
+console.log(sm_05);
+
+// ------ is Non repeating true/false -------------
+
+let sm_06 = arr1
+  .sort((a, b) => a - b)
+  .map((num, i, arr) => ({
+    value: num,
+    isNonRepeating: num !== arr[i - 1]
+  }));
+console.log(sm_06);
+
+// -------- sorting + normalisation ( feature scaling ) -----
+
+let sorted = [...uniqueArr].sort((a, b) => a - b);
+let min = sorted[0];
+let max = sorted[sorted.length - 1];
+let sm_07 = sorted.map(num => ((num - min) / (max - min)));
+console.log(sm_07);
+
+// ---------- sort  + range labling ------
+
+let sm_08 = [...uniqueArr]
+  .sort((a, b) => a - b)
+  .map(n => ({
+    value: n,
+    group: n < 20 ? "Low" : n < 40 ? "Medium" : "High"
+  }));
+console.log(sm_08);
 
