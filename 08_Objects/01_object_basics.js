@@ -25,7 +25,7 @@ let student = {
         console.log("Hello, I am Raja");
     },
 
-    jsr: function () {
+    jsr() {
         return "Jai Siya Ram";
     },
 
@@ -45,9 +45,21 @@ console.log("The name of student is :", student.name);
 console.log("The age of", student.name, "is : ", student.age);
 console.log("The Best Skill of", student.name, "is : ", student.skills[2]);
 console.log("The town of", student.name, "is : ", student.address.town);
+console.log(student.id);
+
+console.log(typeof student.skills);
+console.log(typeof student.address);
+console.log(typeof student.greet);
+console.log(typeof student.joiningDate);
+console.log(typeof student.subjects);
+console.log(typeof student.marks);
+console.log(typeof student.id);
+
+console.log(Object.keys(student));
+console.log(Object.values(student));
+console.log(Object.entries(student));
 
 // when function is not returning any value, default returned value becomes undefined 
-student.greet();
 console.log("His Intro says ", student.greet());
 console.log("His said that :", student["greet"]());
 
@@ -104,7 +116,6 @@ for (let val of student.marks.values()) {
 }
 
 let empObj = {};
-console.log()
 console.log(typeof (empObj));
 
 let anotherObj = {
@@ -125,6 +136,7 @@ console.log(anotherObj["100"]);
 
 console.log(anotherObj["123n"]);    // undefined
 //123n key BigInt ke roop me store nahi hoti. JavaScript usse string "123" me convert kar deta hai.
+// Except Symbol, every object key is internally converted into a string.
 console.log(anotherObj["123"]);
 
 let obj = {
@@ -134,3 +146,46 @@ let obj = {
 };
 
 console.log(obj);
+
+let naam = "Shri krishna";
+let kaam = "Gaay chrana";
+
+let gopa = {
+    name: naam,
+    job: kaam,
+    "pura naam": "krishna vasudev chandra",
+    class: "6th",
+    function: "Raksha",
+    return: true
+}
+
+console.log(gopa.name, "sabki", gopa.job, "karte hai.");
+console.log(gopa.name, "ka pura naam", gopa["pura naam"], "hai.");
+console.log(gopa.class, "class me padte hue sabki", gopa.function, "krte the ye baat ekdm", gopa.return, "hai.");
+
+// Objects are mutable
+
+gopa.class = "3rd";
+console.log(gopa.class, "class me padte hue sabki", gopa.function, "krte the ye baat ekdm", gopa.return, "hai.");
+
+// Even if an object is declared with const, its PROPERTIES ONLY can still be modified.
+const gopi = {
+    naam: "Radha"
+}
+console.log(gopa["pura naam"], "ki aatma hai shri", gopi.naam, ".");
+
+gopi.naam = "Radha Rani";
+console.log(gopa["pura naam"], "ki aatma hai hmari", gopi.naam, ".");
+
+// Different objects always have different references even if have same variable key nme or value name, they are not equal.
+
+let a = {
+    x: 10
+};
+
+let b = {
+    x: 10
+};
+
+console.log(a == b);
+console.log(a === b);
